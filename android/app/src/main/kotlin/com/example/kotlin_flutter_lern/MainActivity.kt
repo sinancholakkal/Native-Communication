@@ -11,6 +11,9 @@ import android.content.IntentFilter
 import android.os.BatteryManager
 import android.os.Build.VERSION
 import android.os.Build.VERSION_CODES
+import android.os.VibrationEffect
+import android.os.Vibrator
+import android.os.Build
 
 class MainActivity : FlutterActivity()
 {
@@ -32,6 +35,9 @@ class MainActivity : FlutterActivity()
                 }else{
                     result.error("UNAVAILABLE", "Battery level not available.", null)
                 }
+            }else if (call.method == "vibrateDevice") {
+                vibrateDevice()
+                result.success(null)
             }
             else{
                 result.notImplemented()
@@ -41,5 +47,9 @@ class MainActivity : FlutterActivity()
     private fun getBattery():Int{
         val batteryManager = getSystemService(Context.BATTERY_SERVICE) as BatteryManager
         return batteryManager.getIntProperty(BatteryManager.BATTERY_PROPERTY_CAPACITY)
+    }
+    private fun vibrateDevice(){
+        val vibrator = getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
+        vibrator.vibrate(VibrationEffect.createOneShot(500, VibrationEffect.DEFAULT_AMPLITUDE))
     }
 }

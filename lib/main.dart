@@ -48,7 +48,10 @@ class _HomeScreenState extends State<HomeScreen> {
                 batteryLevel = level;
               });
             }, child: Text("Show Battery")),
-            if(batteryLevel!=null)Text(batteryLevel!)
+            if(batteryLevel!=null)Text(batteryLevel!),
+            ElevatedButton(onPressed: (){
+              PlatformService().onVibrator();
+            }, child: Text("Vibrator")),
           ],
         ),
       ),

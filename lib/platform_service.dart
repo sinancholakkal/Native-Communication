@@ -20,4 +20,7 @@ class PlatformService{
   void showToast(){
     channel.invokeMethod("userName","Success fully logged");
   }
+  void onVibrator(){
+    channel.invokeMethod("vibrateDevice");
+  }
 }
