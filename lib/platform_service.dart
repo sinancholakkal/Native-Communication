@@ -23,4 +23,7 @@ class PlatformService{
   void onVibrator(){
     channel.invokeMethod("vibrateDevice");
   }
+  Future<String> getDeviceInfo()async{
+    return await channel.invokeMethod("deviceInfo");
+  }
 }

@@ -30,7 +30,7 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   String? batteryLevel;
-
+  String? deviceInfo;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -52,6 +52,16 @@ class _HomeScreenState extends State<HomeScreen> {
             ElevatedButton(onPressed: (){
               PlatformService().onVibrator();
             }, child: Text("Vibrator")),
+            ElevatedButton(onPressed: ()async{
+             final info =await PlatformService().getDeviceInfo();
+             setState(() {
+               deviceInfo = info;
+             });
+            }, child: Text("Device Info")),
+            if(deviceInfo!=null)Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 40),
+              child: Text(deviceInfo.toString()),
+            ),
           ],
         ),
       ),

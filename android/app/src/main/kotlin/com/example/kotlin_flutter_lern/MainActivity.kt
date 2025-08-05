@@ -38,6 +38,9 @@ class MainActivity : FlutterActivity()
             }else if (call.method == "vibrateDevice") {
                 vibrateDevice()
                 result.success(null)
+            }else if(call.method=="deviceInfo"){
+                val deviceInfo = "Brand : ${Build.BRAND}, Model : ${Build.MODEL}, Android Version: ${Build.VERSION.RELEASE}, SDK: ${Build.VERSION.SDK_INT}"
+                result.success(deviceInfo)
             }
             else{
                 result.notImplemented()
